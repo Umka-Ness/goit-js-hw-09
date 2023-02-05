@@ -1,4 +1,5 @@
 import Notiflix from 'notiflix';
+const form = document.querySelector(".form")
 const delay = document.querySelector('input[name="delay"]');
 const step = document.querySelector('input[name="step"]');
 const amount = document.querySelector('input[name="amount"]');
@@ -20,6 +21,11 @@ function createPromise(position, delay) {
 
 btnCreatePromise.addEventListener('click', e => {
   e.preventDefault();
+  if (delay.value < 0 || step.value < 0 || amount.value < 0) {
+    Notiflix.Notify.failure('Qui timide rogat docet negare')
+    form.reset()
+    return
+  }
   let firstDelay = Number(delay.value);
   let delayStep = Number(step.value);
   for (let i = 0; i < amount.value; i++) {
